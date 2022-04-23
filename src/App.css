@@ -98,33 +98,51 @@ margin-right: 30px;
 }
 .one-item input{
   align-self: center;
+  flex-basis: 5%;
 }
 .one-item p{
   align-self: center;
   margin-left: 20px;
+  flex-basis: 55%;
+  flex-wrap: wrap;
 }
 .two-item{
   display: flex;
   border-bottom: 1px solid gray;
-  /* justify-content: space-between; */
   padding: 8px;
 }
 .two-item .check{
   align-self: center;
+  flex-basis: 5%;
+  width: fit-content;
+  padding: 10px;
 }
 .two-item .text{
   align-self: center;
   margin-left: 20px;
   text-decoration-line: line-through;
-
+ flex-basis: 55%;
 }
 .one-item .delete{
   width: 90%;
   display: flex;
   justify-content: flex-end;
+  flex-basis: 35%;
 }
 .two-item .delete{
-  width: 90%;
+  width: fit-content;
   display: flex;
   justify-content: flex-end;
+  flex-basis: 35%;
+}
+
+@media only screen and (max-width: 768px){
+  html{
+    font-size: medium;
+  }
+}
+@media only screen and (max-width: 600px){
+  html{
+    font-size: small;
+  }
 }
