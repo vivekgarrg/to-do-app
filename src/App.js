@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 import './App.css';
+import icon from './bars-icon.svg';
 
 function App() {
      
@@ -18,10 +19,11 @@ function App() {
           let response = res.reverse();
           setData(response.map((elem, idx)=>{
                 return(
-                  <div key={idx}>
+                    <div className='one-item' key={idx}>
                       <input type='checkbox' onClick={(e) =>handleInput1(e,idx)} />
-                      <h1>{elem}</h1>
-                  </div>
+                      <p>{elem}</p>
+                    </div>
+             
                 )
               }));
             }
@@ -29,12 +31,13 @@ function App() {
               
 
           if(resDone!=null){
-            const node  = document.querySelectorAll('.taskdone')[0]
-            node.innerHTML = ""  
-           setTaskDone(resDone.map((ele)=>{
-                  let p = document.createElement('p')
-                  p.innerText = ele;
-                  node.insertBefore(p, node.firstChild);
+           setTaskDone(resDone.map((ele, idx)=>{
+                  return(
+                    <div className='two-item' key={idx}>
+                      <input className='check' type="checkbox" checked={true} />
+                      <p  className='text'>{ele}</p>
+                    </div>
+                  )
                     
               }));
       
@@ -42,6 +45,7 @@ function App() {
 
 
           })
+
 
  const handleInput1 =(e, id)=>{
   if(e.target.checked){
@@ -82,21 +86,32 @@ function App() {
   }
 
   return (
-    <div>
-      <div className='heading'>
-        <h1>To Do App</h1>
+  <div>
+    <div className="wrapper">
+      <div className="task-input">
+        <img src={icon} alt="icon"/>
+        <input type='text' value={task} onChange={(e)=>setTask(e.target.value)} onKeyDown={handleInput} placeholder="Add a new task.." />
       </div>
-      <div className='input-box'>
-        <input type='text' value={task} onChange={(e)=>setTask(e.target.value)} onKeyDown={handleInput} />
+      <div className="task-heading">
+        <div className="pending">
+          <span >Tasks</span>
+        </div>
+        <div className='btn'>
+        <button className="clear-btn">Clear All</button>
+        </div>
+      </div>
+      <br/><hr/>
+       <div className="task-box">
+         {data==""&& taskDone==""?<p>You don't have any task here.</p>:<>{data}{taskDone}</>}
+       </div>
+      
+
+    </div>
+
+
       </div>
      
-      <div className='task-list'>
-            {data}
-      </div>
-      <div className='taskdone'>
-           {taskDone}
-      </div>
-    </div>
+      
   );
 }
 
