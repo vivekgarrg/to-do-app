@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import './App.css';
 import icon from './bars-icon.svg';
+import del from './delete.png';
 
 function App() {
      
@@ -22,6 +23,9 @@ function App() {
                         <div className='one-item' key={idx}>
                           <input type='checkbox' onClick={(e) =>handleInput1(e,idx)} />
                           <p>{elem}</p>
+                          <div className='delete'>
+                          <img  width={20} height={20} src={del} onClick={()=>handleDelete1(idx)} style={{cursor:"pointer"}} />
+                          </div>
                         </div>
                 
                     )
@@ -36,6 +40,9 @@ function App() {
                         <div className='two-item' key={idx}>
                           <input className='check' type="checkbox" checked={true} />
                           <p  className='text'>{ele}</p>
+                          <div className='delete'>
+                          <img  width={20} height={20} src={del} onClick={()=>handleDelete(idx)} style={{cursor:"pointer"}} />
+                          </div>
                         </div>
                       )
                         
@@ -89,7 +96,31 @@ function App() {
         localStorage.removeItem('taskDone')
         setTask('')
       }
-
+  const handleDelete=(id)=>{
+      let res = JSON.parse(localStorage.getItem("taskDone"));
+      let newRes = res.filter((elem, indx)=> indx!==id)
+      console.log(newRes)
+      if(newRes.length>0){
+        localStorage.setItem("taskDone", JSON.stringify(newRes));
+      }else{
+        localStorage.setItem("taskDone", JSON.stringify([]));
+      }
+      setTask('')
+      setTaskDone('')
+  }
+  const handleDelete1=(id)=>{
+    let res1 = JSON.parse(localStorage.getItem("tasks"));
+    let res = res1.reverse();
+      let newRes = res.filter((elem, indx)=> indx!==id)
+      console.log(newRes)
+      if(newRes.length>0){
+        localStorage.setItem("tasks", JSON.stringify(newRes));
+      }else{
+        localStorage.setItem("tasks", JSON.stringify([]));
+      }
+      setTask('')
+      setTaskDone('')
+  }
 
   return (
   <div>
