@@ -38,7 +38,7 @@ function App() {
               setTaskDone(resDone.map((ele, idx)=>{
                       return(
                         <div className='two-item' key={idx}>
-                          <input className='check' type="checkbox" checked={true} />
+                          <input className='check' type="checkbox" onClick={(e)=>handleChecked(e,idx)} checked={true} />
                           <p  className='text'>{ele}</p>
                           <div className='delete'>
                           <img  width={20} height={20} src={del} onClick={()=>handleDelete(idx)} style={{cursor:"pointer"}} />
@@ -54,6 +54,18 @@ function App() {
           })
 
 
+  const handleChecked =(e, idx)=>{
+      let response = JSON.parse(localStorage.getItem("taskDone"));
+      let response2 = JSON.parse(localStorage.getItem("tasks"));
+
+      let secondFilter = response.filter((ele, id)=> id!=idx)
+      let filterArr = response.filter((ele, id)=> id==idx);
+      let newArr = [...response2, filterArr]
+      localStorage.setItem("tasks", JSON.stringify(newArr));
+      localStorage.setItem("taskDone", JSON.stringify(secondFilter));
+
+
+  }
  const handleInput1 =(e, id)=>{
       if(e.target.checked){
           let response = JSON.parse(localStorage.getItem("tasks"))
