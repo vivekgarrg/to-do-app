@@ -4,6 +4,6 @@
 <img src="public/icon.png"/>
 
 </br>
-## Link :##
+## Link ##
 https://vivekapp.netlify.app
 
