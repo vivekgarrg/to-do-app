@@ -3,7 +3,8 @@
 
 <img src="public/icon.png"/>
 
-</br>
+<br/>
+
 ## Link ##
 https://vivekapp.netlify.app
 
