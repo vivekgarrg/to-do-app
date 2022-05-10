@@ -1,4 +1,4 @@
-<img src="public/icon.PNG"/>
+<img src="public/icon.png"/>
 #React App
 To-DO
 
